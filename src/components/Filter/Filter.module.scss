@@ -1,0 +1,15 @@
+.Filter{
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 250ms linear;
+    border: 1px solid #888888;
+    color: #000;
+    background-color: #f8f8f8;
+    &:hover, &:focus, &:focus-visible{
+        outline: none;
+        border: 1px solid blue;
+    }
+}

@@ -1,8 +1,14 @@
-import PhoneBook from './components/PhoneBook/PhoneBook';
+import PhoneBook from './components/PhoneBook';
+import Filter from './components/Filter';
+import PhoneBookForm from './components/PhonebookForm';
 
 function App() {
   return (
-    <PhoneBook/>
+    <>
+      <PhoneBookForm />
+      <Filter />
+      <PhoneBook />
+    </>
   );
 }
 

@@ -2,8 +2,9 @@ import React from 'react';
 import Section from '../Section';
 import { connect } from 'react-redux';
 import phonebookActions from '../../redux/phonebook/phonebook-actions';
+import styles from './Filter.module.scss';
 
-const Filter = ({value, onChange, className}) => {
+const Filter = ({value, onChange}) => {
    
     return (
         <Section title="Filter" classArr={['PhoneBookSection']}>
@@ -12,7 +13,7 @@ const Filter = ({value, onChange, className}) => {
             name={value}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             onChange={onChange}
-            className={className}
+            className={styles.Filter}
         />
     </Section>
     );

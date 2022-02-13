@@ -1,59 +1,13 @@
 import React, { Component } from 'react';
 import Section from '../Section/Section';
-import Filter from './Filter';
-import PhoneBookForm from './PhoneBookForm';
 import styles from './PhoneBook.module.scss';
 import { connect } from 'react-redux';
 import phonebookActions from '../../redux/phonebook/phonebook-actions';
 
 class PhoneBook extends Component {
-
-    state = {
-        name: '',
-        number: '',
-    };
-
-    handleChange = ({ target }) => {
-        const { name, value } = target;
-        this.setState({ [name]: value });
-    };
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        const normalizedName = this.state.name.toLowerCase();
-        const { name, number } = this.state;
-        if(this.props.contacts.find(contact => contact.name.toLowerCase() === normalizedName)){
-            this.reset();
-            return alert(`${this.state.name} is already exist in phonebook`);
-        } 
-        this.props.onSubmit(name, number);
-        this.reset();
-    };
-    
-    reset = () => {
-        this.setState({   
-            name: '',
-            number: '',
-        });
-    };
-
     render() {
-        const { name, number } = this.state;
-        const { contacts, filter } = this.props;
+        const { contacts } = this.props;
         return (
-            <>
-                <PhoneBookForm 
-                    nameVal={name} 
-                    numberval={number} 
-                    handleChange={this.handleChange} 
-                    handleSubmit={this.handleSubmit}
-                    className={styles.PhoneBookForm}
-                />
-                <Filter 
-                    value={filter} 
-                    handleChangeFilter={this.changeFilter}
-                    className={styles.Filter}
-                />
                 <Section title="Contacts" classArr={['PhoneBookSection']}>
 
                     {   contacts.length > 0 ?
@@ -82,7 +36,6 @@ class PhoneBook extends Component {
                             <p className={styles.Empty}>Nothing here! Please, add a contact!</p>
                     }
                 </Section>
-            </>
         );
     }
 }
@@ -100,7 +53,6 @@ const mapStateToProps = ({ phonebook: { contacts, filter } }) => ({
 
 const mapDispatchToProps = dispatch => ({
     onDeleteContact: id => dispatch(phonebookActions.deleteContact(id)),
-    onSubmit: (name, number) => dispatch(phonebookActions.addContact(name, number)),
-  });
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhoneBook);
+export default connect(mapStateToProps, mapDispatchToProps)(PhoneBook); 
